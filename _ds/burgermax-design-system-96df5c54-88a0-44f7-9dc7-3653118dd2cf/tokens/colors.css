@@ -1,0 +1,27 @@
+:root{
+/* base palette — fuego/brasa */
+--bm-red:#d7261e;
+--bm-deep:#9f1d12;
+--bm-orange:#f47c14;
+--bm-yellow:#f9b208;
+--bm-cream:#fff6ea;
+--bm-sand:#fdebd3;
+--bm-ink:#2a1a12;
+--bm-white:#ffffff;
+--bm-whatsapp:#25d366;
+
+/* semantic aliases */
+--surface-page:var(--bm-white);
+--surface-card:var(--bm-cream);
+--surface-pill:var(--bm-sand);
+--text-primary:var(--bm-ink);
+--text-heading:var(--bm-deep);
+--text-muted:color-mix(in oklab, var(--bm-ink) 60%, transparent);
+--text-faint:color-mix(in oklab, var(--bm-ink) 45%, transparent);
+--border-subtle:var(--bm-sand);
+--accent-orange:var(--bm-orange);
+--accent-yellow:var(--bm-yellow);
+--accent-red:var(--bm-red);
+--fire-gradient:linear-gradient(180deg,#fbb03b 0%,#f47c14 100%); /* @kind other */
+--fire-gradient-bar:linear-gradient(90deg,#f9b208,#f47c14,#d7261e); /* @kind other */
+}

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/burgermax-design-system-96df5c54-88a0-44f7-9dc7-3653118dd2cf/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/burgermax-design-system-96df5c54-88a0-44f7-9dc7-3653118dd2cf/tokens/colors.css">
+<link rel="stylesheet" href="_ds/burgermax-design-system-96df5c54-88a0-44f7-9dc7-3653118dd2cf/tokens/typography.css">
+<link rel="stylesheet" href="_ds/burgermax-design-system-96df5c54-88a0-44f7-9dc7-3653118dd2cf/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/burgermax-design-system-96df5c54-88a0-44f7-9dc7-3653118dd2cf/tokens/effects.css">
+<link rel="stylesheet" href="_ds/burgermax-design-system-96df5c54-88a0-44f7-9dc7-3653118dd2cf/styles.css">
+<script src="_ds/burgermax-design-system-96df5c54-88a0-44f7-9dc7-3653118dd2cf/_ds_bundle.js"></script>
+<style>
+a{color:var(--bm-red);text-decoration:none}
+a:hover{color:var(--bm-deep)}
+body{margin:0}
+@keyframes bmFadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes bmMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+html{scroll-behavior:smooth}
+[id]{scroll-margin-top:72px}
+.bm-reveal{opacity:0;animation:bmFadeUp .6s cubic-bezier(.2,1.06,.36,1) forwards}
+</style>
+</helmet>
+<div style="font-family:var(--font-sans);color:var(--text-primary);background:#fff">
+
+<div style="position:sticky;top:0;z-index:10;backdrop-filter:blur(6px);background:rgba(255,255,255,.95)">
+<nav style="display:flex;align-items:center;justify-content:space-between;height:64px;padding:0 16px;gap:8px;border-bottom:1px solid var(--border-subtle);font-family:var(--font-sans)">
+<a href="#top"><img src="assets/logos/burgermax-logo.png" alt="BurgerMax" style="height:40px;width:auto;display:block"></a>
+<div style="display:flex;gap:2px;font-weight:600;font-size:14px">
+<a href="#carta" style="color:var(--text-primary);padding:14px 8px;display:block" style-hover="color:var(--bm-red)">Carta</a>
+<a href="#ubicacion" style="color:var(--text-primary);padding:14px 8px;display:block" style-hover="color:var(--bm-red)">Ubicación</a>
+<a href="#contacto" style="color:var(--text-primary);padding:14px 8px;display:block" style-hover="color:var(--bm-red)">Contacto</a>
+</div>
+<x-import component-from-global-scope="BurgerMaxDesignSystem_96df5c.Button" variant="fire" size="sm" as="a" href="https://wa.link/glqbbq" hint-size="90px,36px">Pedir</x-import>
+</nav>
+</div>
+
+<section data-screen-label="Hero" style="position:relative;height:min(78vh,760px);min-height:420px;background:var(--bm-ink);overflow:hidden">
+<video id="bm-hero-video" src="assets/video/hero-burger.mp4" autoplay muted loop playsinline preload="auto" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>
+<div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(42,26,18,0) 45%,rgba(42,26,18,.8) 100%)"></div>
+<div style="position:absolute;left:20px;right:20px;bottom:24px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap">
+<h1 style="margin:0;font-weight:800;font-size:clamp(28px,5.5vw,52px);line-height:1.15;letter-spacing:0;color:#fff">Burgers a la brasa.<br><span style="color:var(--bm-yellow)">Pedí ya.</span></h1>
+<x-import component-from-global-scope="BurgerMaxDesignSystem_96df5c.Button" variant="fire" size="lg" as="a" href="https://wa.link/glqbbq" hint-size="220px,52px">Pedir por WhatsApp</x-import>
+</div>
+</section>
+
+<div class="bm-reveal" style="padding:24px 0;overflow:hidden">
+<div class="bm-marquee" style="display:flex;align-items:center;width:max-content;animation:bmMarquee 32s linear infinite">
+<sc-for list="{{ gallery }}" as="photo" hint-placeholder-count="4">
+<img src="{{ photo.src }}" style="height:{{ photo.h }}px;width:230px;object-fit:cover;border-radius:28px;flex-shrink:0;margin-right:16px">
+</sc-for>
+<sc-for list="{{ gallery }}" as="photo" hint-placeholder-count="4">
+<img src="{{ photo.src }}" style="height:{{ photo.h }}px;width:230px;object-fit:cover;border-radius:28px;flex-shrink:0;margin-right:16px">
+</sc-for>
+</div>
+</div>
+
+<div data-screen-label="Carta" class="bm-reveal" style="padding:40px 20px" id="carta">
+<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap">
+<h2 style="margin:0;font-weight:800;font-size:clamp(36px,6vw,52px);letter-spacing:-.02em;color:var(--bm-red)">Menú</h2>
+<x-import component-from-global-scope="BurgerMaxDesignSystem_96df5c.CategorySelect" value="{{ cat }}" onChange="{{ onCatChange }}" hint-size="190px,60px"></x-import>
+</div>
+<p style="margin:6px 0 0;font-size:13px;color:var(--text-muted)">Precios y pedidos por WhatsApp.</p>
+<div style="margin-top:24px;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px">
+<sc-for list="{{ visibleMenu }}" as="item" hint-placeholder-count="4">
+<x-import component-from-global-scope="BurgerMaxDesignSystem_96df5c.MenuCard" image="{{ item.image }}" title="{{ item.title }}" note="{{ item.note }}" category="{{ item.category }}" hint-size="100%,240px"></x-import>
+</sc-for>
+</div>
+</div>
+
+<div data-screen-label="Ubicacion" class="bm-reveal" style="padding:40px 20px" id="ubicacion">
+<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--border-subtle)">
+<h2 style="margin:0;font-weight:800;font-size:clamp(36px,6vw,52px);letter-spacing:-.02em;color:var(--bm-deep)">Ubicación</h2>
+<p style="margin:0;font-size:13px;color:var(--text-muted)">Vení al local, retirá o pedí delivery.</p>
+</div>
+<div style="margin-top:28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:32px;align-items:center">
+<div style="border-radius:20px;overflow:hidden;border:1px solid var(--bm-sand);height:min(420px,100vw)">
+<img src="assets/images/fachada.png" alt="Fachada BurgerMax" style="width:100%;height:100%;object-fit:cover;display:block">
+</div>
+<div style="display:flex;flex-direction:column;gap:10px;align-items:flex-start">
+<x-import component-from-global-scope="BurgerMaxDesignSystem_96df5c.Pill" tone="filled" hint-size="140px,30px">Ciudad del Este</x-import>
+<p style="margin:0;font-size:clamp(24px,4vw,32px);font-weight:800;line-height:1.1;color:var(--bm-deep)">Cruz del Eje, L. Echenique y Sarmiento</p>
+<p style="margin:0;font-size:18px;color:var(--text-muted)">Frente a Ruta 38</p>
+<div style="width:100%;box-sizing:border-box;margin-top:8px;background:var(--bm-cream);border-radius:16px;padding:18px 20px">
+<p style="margin:0;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--text-muted)">Horario</p>
+<p style="margin:6px 0 0;font-size:20px;font-weight:800;color:var(--text-heading)">Martes a viernes · 11 AM a 2 AM</p>
+<p style="margin:6px 0 0;font-size:12px;color:var(--text-muted)">Fines de semana y feriados: consultá por WhatsApp.</p>
+</div>
+<p style="margin:10px 0 0;font-size:13px;color:var(--text-muted)">Elegí cómo comer:</p>
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<x-import component-from-global-scope="BurgerMaxDesignSystem_96df5c.Pill" hint-size="90px,30px">Salón</x-import>
+<x-import component-from-global-scope="BurgerMaxDesignSystem_96df5c.Pill" hint-size="110px,30px">Take away</x-import>
+<x-import component-from-global-scope="BurgerMaxDesignSystem_96df5c.Pill" hint-size="100px,30px">Delivery</x-import>
+</div>
+<div style="margin-top:8px;display:flex;gap:10px;flex-wrap:wrap">
+<x-import component-from-global-scope="BurgerMaxDesignSystem_96df5c.Button" variant="fire" as="a" href="https://wa.link/glqbbq" hint-size="110px,44px">Pedir</x-import>
+<x-import component-from-global-scope="BurgerMaxDesignSystem_96df5c.Button" variant="outline" as="a" href="https://maps.app.goo.gl/JqZi9mu3YngcJppY8" hint-size="150px,44px">Cómo llegar</x-import>
+</div>
+</div>
+</div>
+</div>
+
+<div data-screen-label="Contacto" class="bm-reveal" style="padding:40px 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:32px;align-items:center" id="contacto">
+<div style="display:flex;flex-direction:column;align-items:flex-start;gap:16px;padding:0 8px">
+<h2 style="margin:0;font-weight:800;font-size:clamp(44px,7vw,72px);letter-spacing:-.02em;color:var(--bm-deep)">Escribinos</h2>
+<p style="margin:0;max-width:420px;font-size:18px;line-height:1.5;color:var(--text-muted)">Todos los pedidos, consultas y precios se manejan por WhatsApp. Te respondemos al toque.</p>
+<div style="margin-top:8px"><x-import component-from-global-scope="BurgerMaxDesignSystem_96df5c.Button" variant="fire" size="lg" as="a" href="https://wa.link/glqbbq" hint-size="260px,52px">Pedir por WhatsApp</x-import></div>
+<div style="margin-top:16px;width:100%;box-sizing:border-box;max-width:560px;background:var(--bm-cream);border-radius:20px;padding:22px 24px">
+<p style="margin:0;font-size:18px;font-weight:800;color:var(--bm-deep)">Promos en Instagram</p>
+<p style="margin:8px 0 0;font-size:15px;color:var(--text-muted)">Seguinos para enterarte de las promos: martes de descuento, promos por fecha y combos nuevos se publican primero ahí.</p>
+<a href="https://www.instagram.com/burgermaxcde/" style="margin-top:14px;display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:15px;color:var(--bm-orange)" style-hover="color:var(--bm-red)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor"></circle></svg>@burgermaxcde</a>
+</div>
+</div>
+<img src="assets/images/burger-double.jpg" alt="" style="width:100%;height:min(520px,105vw);object-fit:cover;border-radius:24px;display:block">
+</div>
+
+<footer data-screen-label="Footer" style="border-top:1px solid var(--border-subtle);padding:20px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
+<img src="assets/logos/burgermax-logo.png" alt="BurgerMax" style="height:44px;width:44px;border-radius:50%">
+<div style="display:flex;gap:4px;font-size:14px;font-weight:600;flex-wrap:wrap">
+<a href="https://wa.link/glqbbq" style="padding:12px 8px;display:block">WhatsApp</a>
+<a href="https://www.instagram.com/burgermaxcde/" style="padding:12px 8px;display:block">Instagram</a>
+<a href="#ubicacion" style="padding:12px 8px;display:block">Cómo llegar</a>
+</div>
+</footer>
+
+<sc-if value="{{ hasCart }}" hint-placeholder-val="{{ false }}">
+<div style="position:fixed;left:16px;right:88px;bottom:16px;z-index:30;display:flex;justify-content:center;pointer-events:none">
+<button onClick="{{ openCart }}" style="pointer-events:auto;width:100%;max-width:420px;display:flex;justify-content:space-between;align-items:center;gap:12px;border:0;cursor:pointer;font:inherit;font-weight:800;font-size:15px;color:#fff;background:var(--fire-gradient);padding:14px 22px;border-radius:999px;box-shadow:var(--shadow-fire)"><span>Ver mi pedido</span><span style="background:#fff;color:var(--bm-red);border-radius:999px;min-width:28px;padding:2px 10px;text-align:center">{{ cartCount }}</span></button>
+</div>
+</sc-if>
+<sc-if value="{{ cartOpen }}" hint-placeholder-val="{{ false }}">
+<div onClick="{{ closeCart }}" style="position:fixed;inset:0;z-index:40;background:rgba(42,26,18,.55);display:flex;align-items:flex-end;justify-content:center">
+<div onClick="{{ stop }}" style="width:100%;max-width:520px;max-height:85vh;overflow:auto;box-sizing:border-box;background:#fff;border-radius:24px 24px 0 0;padding:24px 20px 28px;font-family:var(--font-sans)">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<h3 style="margin:0;font-weight:800;font-size:26px;color:var(--bm-deep)">Tu pedido</h3>
+<button onClick="{{ closeCart }}" aria-label="Cerrar" style="border:0;background:var(--bm-cream);width:36px;height:36px;border-radius:50%;font-size:18px;cursor:pointer;color:var(--text-primary)">✕</button>
+</div>
+<div style="margin-top:16px;display:flex;flex-direction:column;gap:10px">
+<sc-for list="{{ cartItems }}" as="it" hint-placeholder-count="2">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--bm-cream);border-radius:16px;padding:12px 14px">
+<span style="font-weight:700;color:var(--text-heading)">{{ it.name }}</span>
+<span style="display:flex;align-items:center;gap:10px">
+<button onClick="{{ it.dec }}" aria-label="Quitar uno" style="border:0;width:32px;height:32px;border-radius:50%;background:#fff;font-size:18px;font-weight:800;cursor:pointer;color:var(--bm-red)">−</button>
+<span style="min-width:18px;text-align:center;font-weight:800">{{ it.qty }}</span>
+<button onClick="{{ it.inc }}" aria-label="Agregar uno" style="border:0;width:32px;height:32px;border-radius:50%;background:var(--bm-red);color:#fff;font-size:18px;font-weight:800;cursor:pointer">+</button>
+</span>
+</div>
+</sc-for>
+</div>
+<p style="margin:14px 0 0;font-size:12px;color:var(--text-muted)">Los precios y el total te los confirmamos por WhatsApp.</p>
+<div style="margin-top:18px;display:flex;flex-direction:column;gap:10px">
+<button onClick="{{ sendCart }}" style="border:0;cursor:pointer;font:inherit;font-weight:800;text-transform:uppercase;letter-spacing:.03em;font-size:15px;color:#fff;background:var(--fire-gradient);padding:16px 22px;border-radius:999px;box-shadow:var(--shadow-fire)">Enviar pedido por WhatsApp</button>
+<button onClick="{{ closeCart }}" style="border:2px solid var(--bm-orange);background:transparent;cursor:pointer;font:inherit;font-weight:800;text-transform:uppercase;font-size:13px;color:var(--bm-orange);padding:12px 22px;border-radius:999px">Seguir eligiendo</button>
+</div>
+</div>
+</div>
+</sc-if>
+
+<div style="position:fixed;right:16px;bottom:16px;z-index:20"><x-import component-from-global-scope="BurgerMaxDesignSystem_96df5c.WhatsAppFloat" hint-size="56px,56px"></x-import></div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const WA_NUMBER = '54354952657 7'.replace(/\s/g, ''); // ej: '595981123456' (con código de país, sin + ni espacios)
+const MENU = [
+  { image: 'assets/images/menu-clasica.jpg', title: 'Hamburguesa clásica', category: 'hamburguesas' },
+  { image: 'assets/images/menu-palta.jpg', title: 'Hamburguesa con palta', category: 'hamburguesas' },
+  { image: 'assets/images/menu-nuggets.jpg', title: 'Nuggets', category: 'pollo' },
+  { image: 'assets/images/menu-crispy.jpg', title: 'Pollo crispy', category: 'pollo' },
+  { image: 'assets/images/menu-milkshake.jpg', title: 'Milkshakes', note: 'Caramelo, oreo, pistacho, chocolate, dulce de leche y frutilla', category: 'bebidas' },
+  { image: 'assets/images/menu-tostado.jpg', title: 'Tostados', category: 'acompanar' },
+];
+const GALLERY = [['burger-double',330,20],['ingredientes',270,0]].map(([n,h,ml])=>({src:'assets/images/'+n+'.jpg',h,ml}));
+
+class Component extends DCLogic {
+  state = { cat: 'todo', name: '', msg: '', cart: [], cartOpen: false };
+  change(name, d) {
+    this.setState((s) => {
+      const cart = s.cart.map((c) => ({ ...c }));
+      const i = cart.findIndex((c) => c.name === name);
+      if (i < 0) { if (d > 0) cart.push({ name, qty: d }); }
+      else { cart[i].qty += d; if (cart[i].qty <= 0) cart.splice(i, 1); }
+      return { cart, cartOpen: s.cartOpen && cart.length > 0 };
+    });
+  }
+  componentDidMount() {
+    const carta = document.getElementById('carta');
+    if (carta) {
+      const open = (e) => {
+        const card = e.target.closest && e.target.closest('article[data-cat]');
+        if (!card) return;
+        e.preventDefault(); e.stopPropagation();
+        const name = (card.querySelector('h3') || {}).textContent || '';
+        this.change(name.trim(), 1);
+      };
+      carta.addEventListener('click', open, true);
+      carta.addEventListener('mouseover', (e) => {
+        const c = e.target.closest && e.target.closest('article[data-cat]');
+        if (c) c.style.cursor = 'pointer';
+      });
+    }
+    const v = document.getElementById('bm-hero-video');
+    if (v) {
+      v.muted = true; v.loop = true; v.playsInline = true;
+      const go = () => { v.currentTime = 0; const p = v.play(); if (p && p.catch) p.catch(() => {}); };
+      v.addEventListener('ended', go);
+      v.addEventListener('pause', () => { if (!v.ended && !document.hidden) { const p = v.play(); if (p && p.catch) p.catch(() => {}); } });
+      go();
+    }
+    if (window.IntersectionObserver) {
+      const els = document.querySelectorAll('.bm-reveal');
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.style.animationPlayState = 'running';
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      els.forEach((el) => { el.style.animationPlayState = 'paused'; obs.observe(el); });
+    }
+  }
+  renderVals() {
+    const cat = this.state.cat;
+    const visibleMenu = cat === 'todo' ? MENU : MENU.filter((m) => m.category === cat);
+    return {
+      cat,
+      gallery: [...GALLERY, ...GALLERY, ...GALLERY],
+      visibleMenu,
+      onCatChange: (e) => this.setState({ cat: e.target.value }),
+      hasCart: this.state.cart.length > 0,
+      cartOpen: this.state.cartOpen,
+      cartCount: this.state.cart.reduce((n, c) => n + c.qty, 0),
+      cartItems: this.state.cart.map((c) => ({ name: c.name, qty: c.qty, inc: () => this.change(c.name, 1), dec: () => this.change(c.name, -1) })),
+      openCart: () => this.setState({ cartOpen: true }),
+      closeCart: () => this.setState({ cartOpen: false }),
+      stop: (e) => e.stopPropagation(),
+      sendCart: () => {
+        const lines = this.state.cart.map((c) => '- ' + c.qty + 'x ' + c.name).join('\n');
+        const text = encodeURIComponent('Hola, quería pedir:\n' + lines);
+        const base = WA_NUMBER ? 'https://wa.me/' + WA_NUMBER : 'https://wa.link/glqbbq';
+        window.open(base + '?text=' + text, '_blank');
+      },
+      onName: (e) => this.setState({ name: e.target.value }),
+      onMsg: (e) => this.setState({ msg: e.target.value }),
+      send: () => {
+        const t = encodeURIComponent('Hola BurgerMax! Soy ' + (this.state.name || '') + '. ' + (this.state.msg || ''));
+        window.open('https://wa.link/glqbbq?text=' + t, '_blank');
+      },
+    };
+  }
+}
+
+</script>
+</body>
+</html>

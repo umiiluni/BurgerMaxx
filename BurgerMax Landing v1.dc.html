@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/burgermax-design-system-96df5c54-88a0-44f7-9dc7-3653118dd2cf/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/burgermax-design-system-96df5c54-88a0-44f7-9dc7-3653118dd2cf/tokens/colors.css">
+<link rel="stylesheet" href="_ds/burgermax-design-system-96df5c54-88a0-44f7-9dc7-3653118dd2cf/tokens/typography.css">
+<link rel="stylesheet" href="_ds/burgermax-design-system-96df5c54-88a0-44f7-9dc7-3653118dd2cf/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/burgermax-design-system-96df5c54-88a0-44f7-9dc7-3653118dd2cf/tokens/effects.css">
+<link rel="stylesheet" href="_ds/burgermax-design-system-96df5c54-88a0-44f7-9dc7-3653118dd2cf/styles.css">
+<script src="_ds/burgermax-design-system-96df5c54-88a0-44f7-9dc7-3653118dd2cf/_ds_bundle.js"></script>
+<style>
+a{color:var(--bm-red);text-decoration:none}
+a:hover{color:var(--bm-deep)}
+body{margin:0}
+@keyframes bmFadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+.bm-reveal{opacity:0;animation:bmFadeUp .6s cubic-bezier(.2,1.06,.36,1) forwards}
+</style>
+</helmet>
+<div style="font-family:var(--font-sans);color:var(--text-primary);background:#fff">
+
+<div style="position:sticky;top:0;z-index:10;backdrop-filter:blur(6px);background:rgba(255,255,255,.95)">
+<x-import component-from-global-scope="BurgerMaxDesignSystem_96df5c.NavBar" logo="assets/logos/burgermax-logo.png" hint-size="100%,64px"></x-import>
+</div>
+
+<section data-screen-label="Hero" style="position:relative;height:62vh;min-height:420px;background:var(--bm-ink);overflow:hidden">
+<img src="assets/images/burger-final.jpg" alt="Hamburguesa BurgerMax" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.85">
+<div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(42,26,18,.15) 0%,rgba(42,26,18,.75) 100%)"></div>
+<div style="position:absolute;left:16px;top:16px"><img src="assets/logos/burgermax-logo.png" alt="BurgerMax" style="height:56px;width:56px;border-radius:50%;box-shadow:var(--shadow-card)"></div>
+<div style="position:absolute;left:16px;right:16px;bottom:88px;max-width:560px">
+<h1 style="margin:0;font-weight:800;font-size:clamp(32px,7vw,52px);line-height:1.05;color:#fff">Hamburguesas con fuego de verdad</h1>
+<p style="margin:10px 0 0;font-size:15px;color:rgba(255,255,255,.85)">Salón, take away y delivery en Ciudad del Este.</p>
+</div>
+<div style="position:absolute;left:16px;right:16px;bottom:16px;background:rgba(255,255,255,.95);border-radius:16px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;box-shadow:var(--shadow-card)">
+<div>
+<p style="margin:0;font-weight:800;font-size:13px;color:var(--text-heading)">Salón · Take away · Delivery</p>
+<p style="margin:2px 0 0;font-size:11px;color:var(--text-muted)">Lozada Echenique y Sarmiento</p>
+</div>
+<x-import component-from-global-scope="BurgerMaxDesignSystem_96df5c.Button" variant="fire" size="sm" as="a" href="https://wa.link/glqbbq" hint-size="90px,36px">Pedir</x-import>
+</div>
+</section>
+
+<div class="bm-reveal" style="padding:32px 16px 8px;display:flex;gap:12px;overflow-x:auto">
+<sc-for list="{{ gallery }}" as="photo" hint-placeholder-count="4">
+<img src="{{ photo }}" style="height:180px;width:130px;object-fit:cover;border-radius:20px;flex-shrink:0">
+</sc-for>
+<div style="flex-shrink:0;height:180px;width:130px"><x-import component-from-global-scope="BurgerMaxDesignSystem_96df5c.PhotoSlot" label="Clientes en el local" aspect="130 / 180" hint-size="130px,180px"></x-import></div>
+</div>
+
+<div data-screen-label="Carta" class="bm-reveal" style="padding:32px 16px" id="carta">
+<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap">
+<div>
+<h2 style="margin:0;font-weight:800;font-size:28px;color:var(--text-heading)">Carta</h2>
+<p style="margin:4px 0 0;font-size:13px;color:var(--text-muted)">Precios y armado de pedidos por WhatsApp.</p>
+</div>
+<x-import component-from-global-scope="BurgerMaxDesignSystem_96df5c.CategorySelect" value="{{ cat }}" onChange="{{ onCatChange }}" hint-size="190px,60px"></x-import>
+</div>
+<div style="margin-top:24px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
+<sc-for list="{{ visibleMenu }}" as="item" hint-placeholder-count="4">
+<x-import component-from-global-scope="BurgerMaxDesignSystem_96df5c.MenuCard" image="{{ item.image }}" title="{{ item.title }}" note="{{ item.note }}" category="{{ item.category }}" hint-size="100%,240px"></x-import>
+</sc-for>
+</div>
+</div>
+
+<div data-screen-label="Ubicacion" class="bm-reveal" style="padding:32px 16px" id="ubicacion">
+<h2 style="margin:0;font-weight:800;font-size:28px;color:var(--text-heading);border-bottom:1px solid var(--border-subtle);padding-bottom:16px">Ubicación</h2>
+<div style="margin-top:24px;border-radius:16px;overflow:hidden;border:1px solid var(--border-subtle);height:200px">
+<iframe title="Mapa" src="https://www.google.com/maps?q=Lozada%20Echenique%20y%20Sarmiento%2C%20Ciudad%20del%20Este%2C%20Paraguay&z=16&output=embed" style="width:100%;height:100%;border:0" loading="lazy"></iframe>
+</div>
+<div style="margin-top:20px">
+<x-import component-from-global-scope="BurgerMaxDesignSystem_96df5c.Pill" tone="filled" hint-size="140px,30px">Ciudad del Este</x-import>
+<p style="margin-top:12px;font-size:22px;font-weight:800;color:var(--text-heading)">Lozada Echenique y Sarmiento</p>
+<p style="margin:0;color:var(--text-muted)">Frente a Ruta 38</p>
+<div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap">
+<x-import component-from-global-scope="BurgerMaxDesignSystem_96df5c.Pill" hint-size="90px,30px">Salón</x-import>
+<x-import component-from-global-scope="BurgerMaxDesignSystem_96df5c.Pill" hint-size="110px,30px">Take away</x-import>
+<x-import component-from-global-scope="BurgerMaxDesignSystem_96df5c.Pill" hint-size="100px,30px">Delivery</x-import>
+</div>
+<div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap">
+<x-import component-from-global-scope="BurgerMaxDesignSystem_96df5c.Button" variant="fire" as="a" href="https://wa.link/glqbbq" hint-size="100px,44px">Pedir</x-import>
+<x-import component-from-global-scope="BurgerMaxDesignSystem_96df5c.Button" variant="outline" as="a" href="https://www.google.com/maps?q=Lozada+Echenique+y+Sarmiento,+Ciudad+del+Este,+Paraguay" hint-size="140px,44px">Cómo llegar</x-import>
+</div>
+</div>
+</div>
+
+<div data-screen-label="Horarios" class="bm-reveal" style="margin:32px 16px;background:linear-gradient(135deg,var(--bm-red),var(--bm-orange));border-radius:24px;padding:32px 24px;color:#fff;box-shadow:0 12px 28px -10px rgba(215,38,30,.5)">
+<p style="margin:0;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;opacity:.9">Horario</p>
+<p style="margin:6px 0 0;font-size:clamp(28px,6vw,40px);font-weight:800;line-height:1.1">Martes a domingo<br>11 AM a 2 AM</p>
+<p style="margin:12px 0 0;font-size:14px;opacity:.9">Incluidos feriados. Lunes cerrado.</p>
+</div>
+
+<div data-screen-label="Promos" class="bm-reveal" style="padding:32px 16px 8px">
+<h2 style="margin:0;font-weight:800;font-size:28px;color:var(--text-heading)">Promos</h2>
+<p style="margin:8px 0 0;color:var(--text-muted);max-width:480px">Por ahora no hay promos activas — se anuncian para fechas especiales como Día del Niño y Día del Padre. Seguí @burgermaxcde para no perderte ninguna.</p>
+<div style="margin-top:20px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px">
+<div style="height:150px"><x-import component-from-global-scope="BurgerMaxDesignSystem_96df5c.PhotoSlot" label="Promo Día del Niño" aspect="1 / 1" hint-size="100%,150px"></x-import></div>
+<div style="height:150px"><x-import component-from-global-scope="BurgerMaxDesignSystem_96df5c.PhotoSlot" label="Promo Día del Padre" aspect="1 / 1" hint-size="100%,150px"></x-import></div>
+</div>
+<a href="https://www.instagram.com/burgermaxcde/" style="margin-top:16px;display:inline-block;font-weight:700;font-size:14px">Ver todas en @burgermaxcde →</a>
+</div>
+
+<div data-screen-label="Contacto" class="bm-reveal" style="padding:32px 16px 40px" id="contacto">
+<h2 style="margin:0;font-weight:800;font-size:32px;color:var(--text-heading)">Escribinos</h2>
+<p style="margin-top:12px;color:var(--text-muted);max-width:420px">Todos los pedidos, consultas y precios se manejan por WhatsApp. Te respondemos al toque.</p>
+<div style="margin-top:20px"><x-import component-from-global-scope="BurgerMaxDesignSystem_96df5c.Button" variant="fire" size="lg" as="a" href="https://wa.link/glqbbq" hint-size="240px,52px">Pedir por WhatsApp</x-import></div>
+</div>
+
+<footer data-screen-label="Footer" style="border-top:1px solid var(--border-subtle);padding:24px 16px;display:flex;flex-direction:column;align-items:center;gap:12px">
+<img src="assets/logos/burgermax-logo.png" style="height:36px;width:36px;border-radius:50%">
+<div style="display:flex;gap:20px;font-size:13px;font-weight:600">
+<a href="https://wa.link/glqbbq">WhatsApp</a>
+<a href="https://www.instagram.com/burgermaxcde/">Instagram</a>
+<a href="#ubicacion">Cómo llegar</a>
+</div>
+<p style="margin:0;font-size:11px;color:var(--text-faint)">© 2026 BurgerMax · Ciudad del Este</p>
+</footer>
+
+<div style="position:fixed;right:16px;bottom:16px;z-index:20"><x-import component-from-global-scope="BurgerMaxDesignSystem_96df5c.WhatsAppFloat" hint-size="56px,56px"></x-import></div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const MENU = [
+  { image: 'assets/images/cheese-macro.jpg', title: 'Hamburguesa clásica', category: 'hamburguesas' },
+  { image: 'assets/images/cheese-pour.jpg', title: 'Hamburguesa con palta', category: 'hamburguesas' },
+  { image: 'assets/images/double-stack.jpg', title: 'Combos con papas', category: 'combos' },
+  { title: 'Nuggets', category: 'pollo' },
+  { title: 'Pollo crispy', category: 'pollo' },
+  { title: 'Milkshakes', note: 'Caramelo, oreo, pistacho, chocolate, dulce de leche y frutilla', category: 'bebidas' },
+  { title: 'Limonada natural', category: 'bebidas' },
+  { title: 'Tostados', category: 'acompanar' },
+];
+const GALLERY = ['assets/images/cheese-macro.jpg', 'assets/images/double-stack.jpg', 'assets/images/cheese-pour.jpg', 'assets/images/burger-final.jpg'];
+
+class Component extends DCLogic {
+  state = { cat: 'todo' };
+  componentDidMount() {
+    if (window.IntersectionObserver) {
+      const els = document.querySelectorAll('.bm-reveal');
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.style.animationPlayState = 'running';
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      els.forEach((el) => { el.style.animationPlayState = 'paused'; obs.observe(el); });
+    }
+  }
+  renderVals() {
+    const cat = this.state.cat;
+    const visibleMenu = cat === 'todo' ? MENU : MENU.filter((m) => m.category === cat);
+    return {
+      cat,
+      gallery: GALLERY,
+      visibleMenu,
+      onCatChange: (e) => this.setState({ cat: e.target.value }),
+    };
+  }
+}
+
+</script>
+</body>
+</html>

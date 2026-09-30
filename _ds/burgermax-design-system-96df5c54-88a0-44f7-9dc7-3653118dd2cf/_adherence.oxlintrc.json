@@ -1,0 +1,256 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "components/cards/**",
+              "components/core/**",
+              "components/feedback/**",
+              "components/forms/**",
+              "components/navigation/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Plus Jakarta Sans))/i]",
+        "message": "Font not provided by the design system. Available: Plus Jakarta Sans."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute > JSXIdentifier[name!=/^(?:variant|size|icon|as|href|children|key|ref|className|style|children)$/]",
+        "message": "<Button> doesn't accept that prop. Declared props: variant, size, icon, as, href, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:fire|outline)$/]",
+        "message": "<Button> variant must be one of 'fire' | 'outline'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='size'] > Literal[value!=/^(?:sm|md|lg)$/]",
+        "message": "<Button> size must be one of 'sm' | 'md' | 'lg'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='as'] > Literal[value!=/^(?:button|a)$/]",
+        "message": "<Button> as must be one of 'button' | 'a'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='CategorySelectOption'] > JSXAttribute > JSXIdentifier[name!=/^(?:value|label|key|ref|className|style|children)$/]",
+        "message": "<CategorySelectOption> doesn't accept that prop. Declared props: value, label."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='MenuCard'] > JSXAttribute > JSXIdentifier[name!=/^(?:image|title|note|category|key|ref|className|style|children)$/]",
+        "message": "<MenuCard> doesn't accept that prop. Declared props: image, title, note, category."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='NavBar'] > JSXAttribute > JSXIdentifier[name!=/^(?:logo|links|key|ref|className|style|children)$/]",
+        "message": "<NavBar> doesn't accept that prop. Declared props: logo, links."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='PhotoSlot'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|width|aspect|key|ref|className|style|children)$/]",
+        "message": "<PhotoSlot> doesn't accept that prop. Declared props: label, width, aspect."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Pill'] > JSXAttribute > JSXIdentifier[name!=/^(?:tone|children|key|ref|className|style|children)$/]",
+        "message": "<Pill> doesn't accept that prop. Declared props: tone, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Pill'] > JSXAttribute[name.name='tone'] > Literal[value!=/^(?:outline|filled)$/]",
+        "message": "<Pill> tone must be one of 'outline' | 'filled'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='WhatsAppFloat'] > JSXAttribute > JSXIdentifier[name!=/^(?:href|key|ref|className|style|children)$/]",
+        "message": "<WhatsAppFloat> doesn't accept that prop. Declared props: href."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {
+      "Button": {
+        "replaces": []
+      },
+      "CategorySelectOption": {
+        "replaces": []
+      },
+      "MenuCard": {
+        "replaces": []
+      },
+      "NavBar": {
+        "replaces": []
+      },
+      "PhotoSlot": {
+        "replaces": []
+      },
+      "Pill": {
+        "replaces": []
+      },
+      "WhatsAppFloat": {
+        "replaces": []
+      }
+    },
+    "tokens": [
+      "--accent-orange",
+      "--accent-red",
+      "--accent-yellow",
+      "--bm-cream",
+      "--bm-deep",
+      "--bm-ink",
+      "--bm-orange",
+      "--bm-red",
+      "--bm-sand",
+      "--bm-whatsapp",
+      "--bm-white",
+      "--bm-yellow",
+      "--border-subtle",
+      "--duration-appear-move",
+      "--duration-appear-opacity",
+      "--duration-fast",
+      "--ease-appear-move",
+      "--ease-appear-opacity",
+      "--ease-standard",
+      "--fire-gradient",
+      "--fire-gradient-bar",
+      "--font-sans",
+      "--leading-snug",
+      "--radius-full",
+      "--radius-lg",
+      "--radius-md",
+      "--radius-sm",
+      "--radius-xl",
+      "--shadow-card",
+      "--shadow-fire",
+      "--shadow-float",
+      "--space-1",
+      "--space-10",
+      "--space-12",
+      "--space-16",
+      "--space-2",
+      "--space-20",
+      "--space-3",
+      "--space-4",
+      "--space-5",
+      "--space-6",
+      "--space-8",
+      "--surface-card",
+      "--surface-page",
+      "--surface-pill",
+      "--text-2xl",
+      "--text-3xl",
+      "--text-4xl",
+      "--text-5xl",
+      "--text-base",
+      "--text-faint",
+      "--text-heading",
+      "--text-lg",
+      "--text-muted",
+      "--text-primary",
+      "--text-sm",
+      "--text-xs",
+      "--tracking-wide",
+      "--weight-bold",
+      "--weight-extrabold",
+      "--weight-medium",
+      "--weight-semibold"
+    ],
+    "tokenKinds": {
+      "--bm-red": "color",
+      "--bm-deep": "color",
+      "--bm-orange": "color",
+      "--bm-yellow": "color",
+      "--bm-cream": "color",
+      "--bm-sand": "color",
+      "--bm-ink": "color",
+      "--bm-white": "color",
+      "--bm-whatsapp": "color",
+      "--surface-page": "color",
+      "--surface-card": "color",
+      "--surface-pill": "color",
+      "--text-primary": "font",
+      "--text-heading": "font",
+      "--text-muted": "font",
+      "--text-faint": "font",
+      "--border-subtle": "color",
+      "--accent-orange": "color",
+      "--accent-yellow": "color",
+      "--accent-red": "color",
+      "--fire-gradient": "other",
+      "--fire-gradient-bar": "other",
+      "--font-sans": "font",
+      "--text-xs": "font",
+      "--text-sm": "font",
+      "--text-base": "font",
+      "--text-lg": "font",
+      "--text-2xl": "font",
+      "--text-3xl": "font",
+      "--text-4xl": "font",
+      "--text-5xl": "font",
+      "--weight-medium": "font",
+      "--weight-semibold": "font",
+      "--weight-bold": "font",
+      "--weight-extrabold": "font",
+      "--tracking-wide": "font",
+      "--leading-snug": "font",
+      "--space-1": "spacing",
+      "--space-2": "spacing",
+      "--space-3": "spacing",
+      "--space-4": "spacing",
+      "--space-5": "spacing",
+      "--space-6": "spacing",
+      "--space-8": "spacing",
+      "--space-10": "spacing",
+      "--space-12": "spacing",
+      "--space-16": "spacing",
+      "--space-20": "spacing",
+      "--radius-sm": "radius",
+      "--radius-md": "radius",
+      "--radius-lg": "radius",
+      "--radius-xl": "radius",
+      "--radius-full": "radius",
+      "--shadow-fire": "shadow",
+      "--shadow-card": "shadow",
+      "--shadow-float": "shadow",
+      "--ease-appear-opacity": "other",
+      "--ease-appear-move": "other",
+      "--ease-standard": "other",
+      "--duration-fast": "other",
+      "--duration-appear-opacity": "other",
+      "--duration-appear-move": "other"
+    },
+    "fontFamilies": [
+      "Plus Jakarta Sans"
+    ]
+  }
+}
