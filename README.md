@@ -6,7 +6,8 @@ Landing page de una página para **BurgerMax**, hamburguesería en Ciudad del Es
 
 ```
 BurgerMax Landing page/
-├── BurgerMax Landing.dc.html      # Versión actual del sitio
+├── index.html                     # Punto de entrada para hosting estático (Vercel, Netlify, etc.)
+├── BurgerMax Landing.dc.html      # Versión actual del sitio (idéntica a index.html)
 ├── BurgerMax Landing v1.dc.html   # Versión anterior (referencia/histórico)
 ├── support.js                     # Runtime que interpreta las etiquetas x-dc/x-import/sc-for/sc-if
 ├── _ds/
@@ -33,7 +34,13 @@ npx serve .
 python -m http.server 8080
 ```
 
-Luego abrir `BurgerMax Landing.dc.html` en el navegador.
+Luego abrir `index.html` en el navegador.
+
+## Deploy en Vercel
+
+Vercel (y cualquier host estático) sirve `/` buscando un `index.html` en la raíz — por eso existe `index.html` (copia exacta de `BurgerMax Landing.dc.html`, que se mantiene como el archivo "fuente" del editor que generó el sitio). Al importar el repo en Vercel, dejar el framework preset en "Other"/estático, sin build command ni output directory: solo tiene que servir los archivos tal cual están.
+
+**Importante:** si editás el contenido en `BurgerMax Landing.dc.html`, hay que replicar el cambio en `index.html` (o reemplazar `index.html` por una copia actualizada) para que el deploy lo refleje.
 
 ## Secciones de la página
 
